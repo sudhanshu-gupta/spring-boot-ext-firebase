@@ -3,23 +3,24 @@ version '0.1.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
+apply plugin: org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 ext {
-    springBootVersion: '1.4.1.RELEASE'
+    springBootVersion = '1.4.1.RELEASE'
 }
 
 buildscript {
     repositories {
+        mavenLocal()
         mavenCentral()
     }
     dependencies {
-        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootVersion
+        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '1.4.1.RELEASE'
     }
 }
 
 jar {
-    basename = 'spring-boot-ext-firebase'
+    baseName = 'spring-boot-ext-firebase'
 }
 
 sourceCompatibility = 1.8
@@ -35,5 +36,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
     compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: springBootVersion
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+    compile group: 'com.google.firebase', name: 'firebase-admin', version: '4.0.2'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
